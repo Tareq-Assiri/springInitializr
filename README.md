@@ -1,4 +1,4 @@
-# spring initializr
+# spring initializr from the shell
 someone said that this is a feature that makes intellij ultimate worth paying for.
 
 so this is a script that I wrote in about an hour after to show him that it's not that hard of a feature to implement.
@@ -16,3 +16,5 @@ you'll get prompts in this order using fzf:
 8. name
 9. description
 10. packageName
+## Refrence
+[Spring initializr](https://start.spring.io/)
