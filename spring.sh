@@ -21,7 +21,4 @@ dependencies=$(echo "$json"| jq -r '.dependencies.values[].values[] | "\(.name)\
 URL="https://start.spring.io/starter.zip?type=$type&language=$language&bootVersion=$bootVersion&baseDir=$baseDir&groupId=$groupId&artifactId=$artifactId&name=$name&description=$description&packageName=$packageName&packaging=$packaging&javaVersion=$javaVersion&dependencies=$dependencies"
 
 # echo "$URL"
-curl -s "$URL" -o do.zip
-
-unzip -qq do.zip
-rm do.zip
+curl -s "$URL" -o do.zip && unzip -qq do.zip && rm do.zip
