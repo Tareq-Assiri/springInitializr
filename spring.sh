@@ -7,15 +7,17 @@ javaVersion=$(echo "$json" | jq -r '.javaVersion.values[] | "\(.name)\t\(.id)"' 
 bootVersion=3.1.0
 echo -n "group (ex. com.example): "
 read -r groupId
-echo -n "artifact (ex. demo): "
-read -r artifactId
+groupId=${groupId:-"com.example"}
 echo -n "name (ex. demo): "
 read -r name
+name=${name:-"demo"}
 echo -n "description (ex. Demo project for Spring Boot): "
 read -r description
+description=${description:-"Demo project for Spring Boot"}
 description=${description// /%20}
-echo -n "packageName (ex. com.example.demo): "
-read -r packageName
+packageName="$groupId.$name"
+echo "$packageName"
+artifactId=$name
 baseDir=$name
 dependencies=$(echo "$json"| jq -r '.dependencies.values[].values[] | "\(.name)\t\(.id)"' | fzf -m --delimiter='\t' --with-nth=1 | cut -f2 | awk -v d="," '{s=(NR==1?s:s d)$0}END{print s}')
 URL="https://start.spring.io/starter.zip?type=$type&language=$language&bootVersion=$bootVersion&baseDir=$baseDir&groupId=$groupId&artifactId=$artifactId&name=$name&description=$description&packageName=$packageName&packaging=$packaging&javaVersion=$javaVersion&dependencies=$dependencies"
